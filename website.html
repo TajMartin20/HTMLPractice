@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Garden - Holographic Plants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1929 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 170, 0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffaa, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 255, 170, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ffaa;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffaa, #00d4ff);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffaa, #00d4ff, #aa00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 170, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.8)); }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+        }
+
+        .cta-btn {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #00ffaa, #00d4ff);
+            color: #0a0e27;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.5);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #00ffaa, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ffaa;
+            box-shadow: 0 20px 50px rgba(0, 255, 170, 0.3);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 255, 170, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #00ffaa;
+        }
+
+        .product-card p {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            background: rgba(26, 31, 58, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: #00ffaa;
+            transform: translateY(-5px);
+        }
+
+        .feature-box .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: rgba(10, 14, 39, 0.9);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 170, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">QUANTUM GARDEN</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>QUANTUM GARDEN</h1>
+        <p>The Future of Interior Design</p>
+        <p>Experience holographic plants that transcend reality</p>
+        <a href="#shop" class="cta-btn">Explore Collection</a>
+    </section>
+
+    <section id="shop">
+        <h2 class="section-title">Our Collection</h2>
+        <div class="shop-grid">
+            <div class="product-card">
+                <div class="product-img">🌿</div>
+                <h3>Quantum Fern</h3>
+                <p>A shimmering holographic fern that shifts colors based on your mood</p>
+                <div class="price">$299</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🌺</div>
+                <h3>Nebula Rose</h3>
+                <p>Ethereal rose with cosmic energy particles floating around it</p>
+                <div class="price">$399</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🌵</div>
+                <h3>Cyber Cactus</h3>
+                <p>Pixelated holographic cactus with neon glow effects</p>
+                <div class="price">$249</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🍃</div>
+                <h3>Aurora Bonsai</h3>
+                <p>Miniature tree with aurora borealis-inspired light patterns</p>
+                <div class="price">$549</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Quantum Garden</h2>
+        <div class="about-content">
+            <p>At Quantum Garden, we're revolutionizing the way you experience nature. Our holographic plants combine cutting-edge quantum projection technology with stunning botanical designs to create living art that exists between dimensions.</p>
+            <p>No water, no sunlight, no maintenance - just pure aesthetic energy that transforms your space into a futuristic oasis.</p>
+        </div>
+        <div class="features">
+            <div class="feature-box">
+                <div class="icon">⚡</div>
+                <h3>Zero Maintenance</h3>
+                <p>Never water or prune again</p>
+            </div>
+            <div class="feature-box">
+                <div class="icon">🎨</div>
+                <h3>Customizable</h3>
+                <p>Change colors and effects</p>
+            </div>
+            <div class="feature-box">
+                <div class="icon">♻️</div>
+                <h3>Eco-Friendly</h3>
+                <p>Pure light, zero waste</p>
+            </div>
+            <div class="feature-box">
+                <div class="icon">🌟</div>
+                <h3>Stunning Display</h3>
+                <p>4K holographic projection</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="about-content">
+            <p>Ready to transform your space? Contact us to learn more about our quantum plant collection or schedule a holographic demonstration.</p>
+            <p style="margin-top: 2rem;">Email: hello@quantumgarden.io</p>
+            <p>Phone: (555) QUANTUM</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Quantum Garden. All rights reserved. Existing in multiple dimensions.</p>
+    </footer>
+</body>
+</html>
