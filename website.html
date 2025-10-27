@@ -150,6 +150,7 @@
             padding: 2rem;
             transition: all 0.3s;
             backdrop-filter: blur(10px);
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -185,6 +186,130 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: #00d4ff;
+        }
+
+        .product-page {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-page.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .product-image-large {
+            background: linear-gradient(135deg, rgba(0, 255, 170, 0.2), rgba(0, 212, 255, 0.2));
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            min-height: 500px;
+            border: 1px solid rgba(0, 255, 170, 0.3);
+        }
+
+        .product-details {
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-details h2 {
+            font-size: 2.5rem;
+            color: #00ffaa;
+            margin-bottom: 1rem;
+        }
+
+        .product-details .price-large {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            margin: 1.5rem 0;
+        }
+
+        .product-details .description {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .purchase-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00ffaa;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ffaa;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, #00ffaa, #00d4ff);
+            color: #0a0e27;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.5);
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: rgba(26, 31, 58, 0.8);
+            color: #00ffaa;
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 255, 170, 0.1);
+            border-color: #00ffaa;
+        }
+
+        .hidden {
+            display: none;
         }
 
         .about-content {
@@ -232,6 +357,16 @@
             text-align: center;
             border-top: 1px solid rgba(0, 255, 170, 0.3);
         }
+
+        @media (max-width: 768px) {
+            .product-page.active {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -254,30 +389,131 @@
 
     <section id="shop">
         <h2 class="section-title">Our Collection</h2>
-        <div class="shop-grid">
-            <div class="product-card">
+        <div class="shop-grid" id="shopGrid">
+            <div class="product-card" onclick="showProduct('quantum-fern')">
                 <div class="product-img">🌿</div>
                 <h3>Quantum Fern</h3>
                 <p>A shimmering holographic fern that shifts colors based on your mood</p>
-                <div class="price">$299</div>
+                <div class="price">299 QUANT</div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="showProduct('nebula-rose')">
                 <div class="product-img">🌺</div>
                 <h3>Nebula Rose</h3>
                 <p>Ethereal rose with cosmic energy particles floating around it</p>
-                <div class="price">$399</div>
+                <div class="price">399 QUANT</div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="showProduct('cyber-cactus')">
                 <div class="product-img">🌵</div>
                 <h3>Cyber Cactus</h3>
                 <p>Pixelated holographic cactus with neon glow effects</p>
-                <div class="price">$249</div>
+                <div class="price">249 QUANT</div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="showProduct('aurora-bonsai')">
                 <div class="product-img">🍃</div>
                 <h3>Aurora Bonsai</h3>
                 <p>Miniature tree with aurora borealis-inspired light patterns</p>
-                <div class="price">$549</div>
+                <div class="price">549 QUANT</div>
+            </div>
+        </div>
+
+        <!-- Product Pages -->
+        <div id="quantum-fern" class="product-page">
+            <div class="product-image-large">🌿</div>
+            <div class="product-details">
+                <a href="#" class="back-btn" onclick="hideProduct('quantum-fern'); return false;">← Back to Shop</a>
+                <h2>Quantum Fern</h2>
+                <p class="price-large">299 QUANT</p>
+                <p class="description">Experience the beauty of nature reimagined through quantum holography. The Quantum Fern shifts through a spectrum of colors based on your emotional state, creating a living mood ring for your space. Using advanced biometric sensors, it responds to your presence with stunning visual transformations.</p>
+                <div class="purchase-form">
+                    <div class="form-group">
+                        <label>Your QUANT Wallet Address</label>
+                        <input type="text" placeholder="0x..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Address</label>
+                        <input type="text" placeholder="Enter your address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <button class="buy-btn" onclick="purchaseProduct('Quantum Fern', 299)">Purchase with QUANT</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="nebula-rose" class="product-page">
+            <div class="product-image-large">🌺</div>
+            <div class="product-details">
+                <a href="#" class="back-btn" onclick="hideProduct('nebula-rose'); return false;">← Back to Shop</a>
+                <h2>Nebula Rose</h2>
+                <p class="price-large">399 QUANT</p>
+                <p class="description">A masterpiece of holographic artistry, the Nebula Rose features cosmic energy particles that orbit its petals in a mesmerizing dance. Each petal contains miniature nebula formations that shift and evolve, creating a unique display every moment. Perfect for those who want to bring the cosmos indoors.</p>
+                <div class="purchase-form">
+                    <div class="form-group">
+                        <label>Your QUANT Wallet Address</label>
+                        <input type="text" placeholder="0x..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Address</label>
+                        <input type="text" placeholder="Enter your address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <button class="buy-btn" onclick="purchaseProduct('Nebula Rose', 399)">Purchase with QUANT</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cyber-cactus" class="product-page">
+            <div class="product-image-large">🌵</div>
+            <div class="product-details">
+                <a href="#" class="back-btn" onclick="hideProduct('cyber-cactus'); return false;">← Back to Shop</a>
+                <h2>Cyber Cactus</h2>
+                <p class="price-large">249 QUANT</p>
+                <p class="description">Embrace the cyberpunk aesthetic with this pixelated holographic cactus. Featuring neon glow effects that pulse with electronic rhythms, the Cyber Cactus adds an edgy, futuristic vibe to any space. Its low-poly design pays homage to retro gaming while utilizing cutting-edge projection technology.</p>
+                <div class="purchase-form">
+                    <div class="form-group">
+                        <label>Your QUANT Wallet Address</label>
+                        <input type="text" placeholder="0x..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Address</label>
+                        <input type="text" placeholder="Enter your address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <button class="buy-btn" onclick="purchaseProduct('Cyber Cactus', 249)">Purchase with QUANT</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="aurora-bonsai" class="product-page">
+            <div class="product-image-large">🍃</div>
+            <div class="product-details">
+                <a href="#" class="back-btn" onclick="hideProduct('aurora-bonsai'); return false;">← Back to Shop</a>
+                <h2>Aurora Bonsai</h2>
+                <p class="price-large">549 QUANT</p>
+                <p class="description">Our premium offering combines ancient Eastern aesthetics with aurora borealis-inspired light patterns. The Aurora Bonsai creates a meditation-worthy display as ribbons of green, blue, and purple light flow through its branches. Each tree is unique, with AI-generated growth patterns that evolve over time.</p>
+                <div class="purchase-form">
+                    <div class="form-group">
+                        <label>Your QUANT Wallet Address</label>
+                        <input type="text" placeholder="0x..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping Address</label>
+                        <input type="text" placeholder="Enter your address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <button class="buy-btn" onclick="purchaseProduct('Aurora Bonsai', 549)">Purchase with QUANT</button>
+                </div>
             </div>
         </div>
     </section>
@@ -324,5 +560,45 @@
     <footer>
         <p>&copy; 2025 Quantum Garden. All rights reserved. Existing in multiple dimensions.</p>
     </footer>
+
+    <script>
+        function showProduct(productId) {
+            // Hide the shop grid
+            document.getElementById('shopGrid').classList.add('hidden');
+            document.querySelector('#shop .section-title').classList.add('hidden');
+            
+            // Show the selected product page
+            document.getElementById(productId).classList.add('active');
+            
+            // Scroll to top of shop section
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideProduct(productId) {
+            // Hide the product page
+            document.getElementById(productId).classList.remove('active');
+            
+            // Show the shop grid again
+            document.getElementById('shopGrid').classList.remove('hidden');
+            document.querySelector('#shop .section-title').classList.remove('hidden');
+        }
+
+        function purchaseProduct(productName, price) {
+            alert(`Initiating QUANT transaction for ${productName}!\n\nPrice: ${price} QUANT\n\nPlease confirm the transaction in your QUANT wallet to complete your purchase.`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
