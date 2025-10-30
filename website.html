@@ -158,16 +158,15 @@
             box-shadow: 0 20px 50px rgba(0, 255, 170, 0.3);
         }
 
-        .product-img {
+        .product-img img {
             width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, rgba(0, 255, 170, 0.2), rgba(0, 212, 255, 0.2));
+            height: 100%;
+            object-fit: cover;
             border-radius: 15px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            display: block;
+        }
+        .product-img {
+            font-size: 0; /* prevents giant alt text */
         }
 
         .product-card h3 {
@@ -256,25 +255,33 @@
         <h2 class="section-title">Our Collection</h2>
         <div class="shop-grid">
             <div class="product-card">
-                <div class="product-img">🌿</div>
+                <div class="product-img">
+                    <img src="fern.png" alt="Quantum Fern">
+                </div>
                 <h3>Quantum Fern</h3>
                 <p>A shimmering holographic fern that shifts colors based on your mood</p>
                 <div class="price">$299</div>
             </div>
             <div class="product-card">
-                <div class="product-img">🌺</div>
+                <div class="product-img">
+                    <img src="rose.png" alt="Quantum Fern">
+                </div>
                 <h3>Nebula Rose</h3>
                 <p>Ethereal rose with cosmic energy particles floating around it</p>
                 <div class="price">$399</div>
             </div>
             <div class="product-card">
-                <div class="product-img">🌵</div>
+                <div class="product-img">
+                    <img src="cactus.png" alt="Quantum Fern">
+                </div>
                 <h3>Cyber Cactus</h3>
                 <p>Pixelated holographic cactus with neon glow effects</p>
                 <div class="price">$249</div>
             </div>
             <div class="product-card">
-                <div class="product-img">🍃</div>
+                <div class="product-img">
+                    <img src="bonsai.png" alt="Quantum Fern">
+                </div>
                 <h3>Aurora Bonsai</h3>
                 <p>Miniature tree with aurora borealis-inspired light patterns</p>
                 <div class="price">$549</div>
